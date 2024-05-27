@@ -1,0 +1,19 @@
+@font-face {
+    font-family: 'Chango';
+    src: url('fonts/Chango-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+body {
+    background: #cfeffc;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+}
+
+html, body {
+    height: 100%;
+}
+
