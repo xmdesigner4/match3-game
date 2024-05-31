@@ -1,24 +1,26 @@
 {
+  "homepage": "https://xmdesigner4.github.io/match3-game/",
   "name": "moon-test",
   "private": true,
   "version": "1.0.0",
   "type": "module",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
   },
-
   "devDependencies": {
     "@originjs/vite-plugin-commonjs": "^1.0.3",
     "@rollup/plugin-commonjs": "^25.0.8",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@types/node": "^20.12.12",
+    "gh-pages": "^6.1.1",
     "prettier": "^3.2.5",
     "typescript": "^5.4.5",
     "vite": "4.2.0"
   },
-
   "dependencies": {
     "@pixi/filter-drop-shadow": "5.2.0",
     "@pixi/particle-emitter": "^5.0.8",
