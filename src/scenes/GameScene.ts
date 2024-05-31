@@ -1,6 +1,4 @@
 import "reflect-metadata";
-import { AssetsManager } from "../AssetsManager";
-import { container as diContainer } from "tsyringe";
 import Board from "../game/Board";
 import GameItem from "../game/GameItem";
 import { Events } from "../api/Events";
@@ -8,9 +6,9 @@ import { CombinationManager, MatchingSet } from "../game/CombinationManager";
 import Field from "../game/Field";
 import Score from "../game/Score";
 import { Scene } from "./Scene";
+import { GameTimer } from "../game/GameTimer";
 
 class GameScene extends Scene {
-  public am: AssetsManager;
   public board: Board;
   public disabled: boolean;
   public cm: CombinationManager;
@@ -32,8 +30,6 @@ class GameScene extends Scene {
 
   constructor() {
     super();
-    this.am = diContainer.resolve(AssetsManager);
-
     this.addBoard();
 
     this.score = new Score(this.board, this.container);
@@ -43,6 +39,17 @@ class GameScene extends Scene {
     this.board.container.on(Events.ITEM_SELECT, this.onItemClick.bind(this));
 
     this.removeStartMatches();
+
+    const timer = new GameTimer(
+      this.container,
+      this.board.container.width * 2 - 16,
+    );
+    timer.container.x =
+      this.board.container.x - this.board.container.width / 2 + 4;
+    timer.container.y =
+      this.board.container.y + this.board.container.height / 2 + 4;
+    this.container.addChild(timer.container);
+    timer.start();
   }
 
   public onItemClick(item: GameItem) {

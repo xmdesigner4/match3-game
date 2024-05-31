@@ -32,7 +32,7 @@ class Board {
     const item = new GameItem(type ?? getRandomGameItemType());
     this.container.addChild(item.sprite);
     field.attachGameItem(item);
-    item.sprite.interactive = true;
+    item.sprite.eventMode = "static";
     item.sprite.on("pointerdown", () => {
       console.log("clicked", item.type);
       this.container.emit(Events.ITEM_SELECT, item);

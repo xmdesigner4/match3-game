@@ -2,7 +2,7 @@
 
 "info01.png":
 {
-	"frame": {"x":0,"y":378,"w":1004,"h":238},
+	"frame": {"x":0,"y":0,"w":1004,"h":238},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":1004,"h":238},
@@ -11,43 +11,52 @@
 },
 "start_btn.png":
 {
-	"frame": {"x":391,"y":0,"w":536,"h":138},
+	"frame": {"x":0,"y":238,"w":536,"h":138},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":536,"h":138},
 	"sourceSize": {"w":536,"h":138},
 	"anchor": {"x":0.5,"y":0.5}
 },
-"timer_bg.png":
+"timer_bg-nsp.png":
 {
-	"frame": {"x":0,"y":355,"w":896,"h":23},
+	"frame": {"x":536,"y":238,"w":25,"h":25},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":896,"h":23},
-	"sourceSize": {"w":896,"h":23},
+	"spriteSourceSize": {"x":0,"y":0,"w":25,"h":25},
+	"sourceSize": {"w":25,"h":25},
 	"anchor": {"x":0.5,"y":0.5}
 },
-"timer_fill.png":
+"timer_fill-nsp.png":
 {
-	"frame": {"x":0,"y":138,"w":699,"h":23},
+	"frame": {"x":561,"y":238,"w":25,"h":25},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":699,"h":23},
-	"sourceSize": {"w":699,"h":23},
+	"spriteSourceSize": {"x":0,"y":0,"w":25,"h":25},
+	"sourceSize": {"w":25,"h":25},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"total-9bg.png":
+{
+	"frame": {"x":586,"y":238,"w":67,"h":62},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":67,"h":62},
+	"sourceSize": {"w":67,"h":62},
 	"anchor": {"x":0.5,"y":0.5}
 },
 "total.png":
 {
-	"frame": {"x":0,"y":0,"w":391,"h":58},
+	"frame": {"x":653,"y":238,"w":319,"h":50},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":391,"h":58},
-	"sourceSize": {"w":391,"h":58},
+	"spriteSourceSize": {"x":0,"y":0,"w":319,"h":50},
+	"sourceSize": {"w":319,"h":50},
 	"anchor": {"x":0.5,"y":0.5}
 },
 "try_again.png":
 {
-	"frame": {"x":0,"y":161,"w":752,"h":194},
+	"frame": {"x":0,"y":376,"w":752,"h":194},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":752,"h":194},
@@ -59,8 +68,8 @@
 	"version": "1.1",
 	"image": "assets.png",
 	"format": "RGBA8888",
-	"size": {"w":1004,"h":616},
+	"size": {"w":1004,"h":570},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:7d2410fd4c06387275ed2a593edf632b:50e30bd9794ed7778e40e3bc0c7a0c25:a759b6bbc8381ac9c472b28f589ad0d6$"
+	"smartupdate": "$TexturePacker:SmartUpdate:1581a20551ceb8fc993019cce6c660e7:acc957d6c74de296a91b1f9535c3d085:a759b6bbc8381ac9c472b28f589ad0d6$"
 }
 }

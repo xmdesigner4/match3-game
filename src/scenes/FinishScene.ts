@@ -21,12 +21,12 @@ class FinishScene extends Scene {
     stamp.y = window.innerHeight / 2;
     this.container.addChild(stamp);
 
-    const tryAgainButton = new PIXI.Sprite(am.getAssetSprite("try_again.png"));
+    const tryAgainButton = am.getAssetSprite("try_again.png");
     tryAgainButton.scale.set(0.5);
     tryAgainButton.anchor.set(0.5);
     tryAgainButton.x = window.innerWidth / 2;
     tryAgainButton.y =
-      stamp.y + stamp.height / 2 + tryAgainButton.height / 2 + 8;
+      stamp.y + stamp.height / 2 + tryAgainButton.height / 2 - 120;
     tryAgainButton.eventMode = "static";
     tryAgainButton.on("pointerdown", this.onTryAgain.bind(this));
     this.container.addChild(tryAgainButton);
