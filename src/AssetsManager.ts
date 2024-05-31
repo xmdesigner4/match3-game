@@ -1,5 +1,25 @@
 import * as PIXI from "pixi.js";
 import { singleton } from "tsyringe";
+import * as FontFaceObserver from "fontfaceobserver";
+import { DropShadowFilter } from "@pixi/filter-drop-shadow";
+import { loadJson } from "./helpers/utils";
+import { GameItemType } from "./api/GameItemType";
+
+export const gameItemShadow = new DropShadowFilter({
+  color: 0x000000,
+  alpha: 0.3,
+  blur: 2,
+  resolution: 1,
+  offset: { x: 2, y: 2 },
+});
+
+export const gameItemShadowUp = new DropShadowFilter({
+  color: 0x000000,
+  alpha: 0.2,
+  blur: 3,
+  resolution: 1,
+  offset: { x: 2, y: 8 },
+});
 
 @singleton()
 export class AssetsManager {
@@ -8,6 +28,7 @@ export class AssetsManager {
   public bgTx: PIXI.Texture;
   public winTx: PIXI.Texture;
   public failTx: PIXI.Texture;
+  public emitterData: Map<GameItemType, JSON>;
 
   constructor() {
     console.info("Assets init...");
@@ -24,16 +45,22 @@ export class AssetsManager {
     this.failTx = await PIXI.Assets.load("./assets/fail.png");
 
     //fonts
-    // @ts-ignore
     const font = new FontFaceObserver("Chango");
     await font.load();
+
+    // load particles
+    this.emitterData = new Map();
+    const emitterRedData = await loadJson("./assets/emitters/emitterRed.json");
+    this.emitterData.set(GameItemType.DIAMOND, emitterRedData);
   }
 
   public getTileSprite = (id: string) => {
-    return new PIXI.Sprite(this.tiles.textures[id]);
+    const s = PIXI.Sprite.from(this.tiles.textures[id]);
+    // s.filters = id === "tile.png" ? [] : [gameItemShadow];
+    return s;
   };
 
   public getAssetSprite = (id: string) => {
-    return new PIXI.Sprite(this.assets.textures[id]);
+    return PIXI.Sprite.from(this.assets.textures[id]);
   };
 }

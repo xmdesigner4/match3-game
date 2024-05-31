@@ -203,7 +203,8 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">timer_bg.png</key>
+            <key type="filename">timer_bg-nsp.png</key>
+            <key type="filename">timer_fill-nsp.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -212,13 +213,13 @@
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>224,6,448,11</rect>
+                <rect>6,6,13,13</rect>
                 <key>scale9Paddings</key>
-                <rect>224,6,448,11</rect>
+                <rect>6,6,13,13</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">timer_fill.png</key>
+            <key type="filename">total-9bg.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -227,9 +228,9 @@
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>175,6,349,11</rect>
+                <rect>17,16,33,31</rect>
                 <key>scale9Paddings</key>
-                <rect>175,6,349,11</rect>
+                <rect>17,16,33,31</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
@@ -272,10 +273,11 @@
                 <array>
                     <filename>info01.png</filename>
                     <filename>start_btn.png</filename>
-                    <filename>timer_bg.png</filename>
-                    <filename>timer_fill.png</filename>
                     <filename>total.png</filename>
                     <filename>try_again.png</filename>
+                    <filename>total-9bg.png</filename>
+                    <filename>timer_bg-nsp.png</filename>
+                    <filename>timer_fill-nsp.png</filename>
                 </array>
             </struct>
         </map>

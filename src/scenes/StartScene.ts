@@ -14,14 +14,14 @@ class StartScene extends Scene {
   public init() {
     const am: AssetsManager = diContainer.resolve(AssetsManager);
 
-    const info = new PIXI.Sprite(am.getAssetSprite("info01.png"));
+    const info = am.getAssetSprite("info01.png");
     info.scale.set(0.5);
     info.anchor.set(0.5);
     info.x = window.innerWidth / 2;
     info.y = window.innerHeight / 2;
     this.container.addChild(info);
 
-    const startButton = new PIXI.Sprite(am.getAssetSprite("start_btn.png"));
+    const startButton = am.getAssetSprite("start_btn.png");
     startButton.scale.set(0.5);
     startButton.anchor.set(0.5);
     startButton.x = window.innerWidth / 2;

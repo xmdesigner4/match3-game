@@ -1,6 +1,6 @@
 import "reflect-metadata";
 import * as PIXI from "pixi.js";
-import { Sprite } from "pixi.js";
+import { ICanvas, Sprite } from "pixi.js";
 import { gsap } from "gsap";
 import { PixiPlugin } from "gsap/PixiPlugin";
 import { EasePack } from "gsap/EasePack";
@@ -9,9 +9,11 @@ import { container as diContainer } from "tsyringe";
 import { IGameConfig } from "./gameConfig";
 import { SceneType } from "./api/SceneType";
 import { SceneManager } from "./SceneManager";
+import { GameItemType } from "./api/GameItemType";
+import { Emitter } from "@pixi/particle-emitter";
 
 export class Application {
-  public app: PIXI.Application;
+  public app: PIXI.Application<HTMLCanvasElement>;
   public am: AssetsManager;
   public sceneManager: SceneManager;
 
@@ -20,23 +22,31 @@ export class Application {
     PixiPlugin.registerPIXI(PIXI);
     gsap.registerPlugin(EasePack);
 
-    this.app = new PIXI.Application();
+    this.app = new PIXI.Application({
+      backgroundColor: 0xfafafa,
+      resizeTo: window,
+    });
     this.sceneManager = new SceneManager(this.app);
     this.init(config).then();
   }
 
   public async init(config: any) {
-    await this.app.init({
-      backgroundColor: 0xfafafa,
-      resizeTo: window,
-    });
-    document.body.appendChild(this.app.canvas);
+    document.body.appendChild(this.app.view);
 
     // inject AssetsManager
     this.am = diContainer.resolve(AssetsManager);
     await this.am.init();
 
     this.addBackground();
+
+    //add red emitter
+    // const particleContainer = new PIXI.ParticleContainer();
+    // const emitter = new Emitter(
+    //   particleContainer,
+    //   this.am.emitterData[GameItemType.DIAMOND],
+    // );
+    // emitter.emit = true;
+    // this.app.stage.addChild(particleContainer);
 
     this.sceneManager.startScene(SceneType.START);
   }

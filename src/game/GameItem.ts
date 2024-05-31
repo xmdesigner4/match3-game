@@ -1,10 +1,14 @@
 import * as PIXI from "pixi.js";
-import { AssetsManager } from "../AssetsManager";
+import {
+  AssetsManager,
+  gameItemShadow,
+  gameItemShadowUp,
+} from "../AssetsManager";
 import { container as diContainer } from "tsyringe";
 import { GameItemType } from "../api/GameItemType";
 import Field from "./Field";
 import { gsap } from "gsap";
-import EaseString = gsap.EaseString;
+import EaseFunction = gsap.EaseFunction;
 
 class GameItem {
   public sprite: PIXI.Sprite;
@@ -25,8 +29,9 @@ class GameItem {
     return this._selected;
   }
   set selected(value: boolean) {
-    const m = value ? 1 : -1;
-    this.sprite.position.y -= m * 10;
+    const cf = value ? 1 : -1;
+    this.sprite.position.y -= cf * 8;
+    this.sprite.filters = value ? [gameItemShadowUp] : [];
     this._selected = value;
   }
 
@@ -45,7 +50,7 @@ class GameItem {
     position: PIXI.Point,
     duration: number,
     delay?: number,
-    ease?: EaseString,
+    ease?: string | EaseFunction,
   ) {
     return new Promise<void>((resolve) => {
       gsap.to(this.sprite, {

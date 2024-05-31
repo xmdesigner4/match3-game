@@ -5,9 +5,11 @@ import Board from "./Board";
 import gameConfig from "../gameConfig";
 import { Events } from "../api/Events";
 import { SceneType } from "../api/SceneType";
+import { NineSlice } from "../helpers/NineSlice";
 
 class Score {
   public container: PIXI.Container;
+  public score_9bg: NineSlice;
 
   private _score: number;
   get score(): number {
@@ -16,7 +18,12 @@ class Score {
   set score(value: number) {
     this._score = value;
     if (!!this.scoreText) {
-      this.scoreText.text = value > 9 ? value : `0${value}`;
+      this.scoreText.text = value.toString();
+      if (!!this.score_9bg) {
+        this.score_9bg.width = this.score.toString().length * 44 + 6 * 3 + 2;
+        this.scoreText.x =
+          this.score_9bg.container.x + this.score_9bg.container.width / 2;
+      }
     }
   }
 
@@ -35,28 +42,33 @@ class Score {
 
     // score graphics
     const am: AssetsManager = diContainer.resolve(AssetsManager);
-    const scoreBack = new PIXI.Sprite(am.getAssetSprite("total.png"));
+    const scoreBack = am.getAssetSprite("total.png");
     scoreBack.anchor.set(0, 1);
     scoreBack.scale.set(0.5);
     scoreBack.x = this.board.container.x - this.board.container.width / 2;
     scoreBack.y = this.board.container.y - this.board.container.height / 2;
     this.container.addChild(scoreBack);
 
+    this.score_9bg = new NineSlice("total-9bg.png");
+    this.score_9bg.container.x = scoreBack.x + scoreBack.width + 6;
+    this.score_9bg.container.y = scoreBack.y - scoreBack.height - 4;
+    this.container.addChild(this.score_9bg.container);
+
     // @ts-ignore
-    this.scoreText = new PIXI.Text({
-      text: "00",
-      style: {
-        fontFamily: "Chango",
-        fontWeight: "normal",
-        fontSize: "30",
-        fill: "white",
-        stroke: { color: "black", width: 4 },
-      },
+    this.scoreText = new PIXI.Text(this.score, {
+      fontFamily: "Chango",
+      fontWeight: "normal",
+      fontSize: 24,
+      fill: "1ea7e1",
+      stroke: "white",
+      strokeThickness: 2,
     });
-    this.scoreText.anchor.set(1, 1);
-    this.scoreText.x = scoreBack.x + scoreBack.width + 24;
-    this.scoreText.y = scoreBack.y + 6;
+    this.scoreText.anchor.set(0.5, 1);
+    this.scoreText.y = scoreBack.y + 2;
     this.container.addChild(this.scoreText);
+    this.score_9bg.width = this.score.toString().length * 44 + 6 * 3 + 2;
+    this.scoreText.x =
+      this.score_9bg.container.x + this.score_9bg.container.width / 2;
   }
 
   public add(toScore: number) {

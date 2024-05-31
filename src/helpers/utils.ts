@@ -7,3 +7,7 @@ export const getRandomGameItemType = () => {
   const map = Object.values(GameItemType);
   return map[rndRange(0, map.length - 1)];
 };
+
+export const loadJson = async (url: string): Promise<JSON> => {
+  return await fetch(url).then(async (res) => await res.json());
+};
