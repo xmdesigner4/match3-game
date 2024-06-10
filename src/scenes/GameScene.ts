@@ -122,7 +122,7 @@ class GameScene extends Scene {
 
       fields.forEach((field) => {
         const item = this.board.createGameItem(field);
-        item.sprite.y = -500;
+        item.sprite.y = -800;
         const delay = (Math.random() * 2) / 10 + 0.3 / (field.row + 1);
         item.fallDownTo(field.position, delay).then(() => {
           ++completed;
@@ -203,6 +203,7 @@ class GameScene extends Scene {
   private addBoard() {
     this.board = new Board();
     this.container.addChild(this.board.container);
+
     this.positionBoard();
     window.addEventListener("resize", () => {
       this.positionBoard();
@@ -224,11 +225,11 @@ class GameScene extends Scene {
       this.board.container.width / this.board.container.height;
     const windowAspect = vw / vh;
     if (boardAspect > windowAspect) {
-      this.board.container.width = vw - 2 * tileWidth;
-      this.board.container.height = (vw - 2 * tileWidth) / boardAspect;
+      this.board.container.width = vw - tileWidth / 2;
+      this.board.container.height = (vw - tileWidth / 2) / boardAspect;
     } else {
-      this.board.container.height = vh - 2 * tileWidth;
-      this.board.container.width = (vh - 2 * tileWidth) * boardAspect;
+      this.board.container.height = vh - tileWidth / 2 - 40;
+      this.board.container.width = (vh - tileWidth / 2 - 40) * boardAspect;
     }
   }
 }

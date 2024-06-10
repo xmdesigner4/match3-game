@@ -1,13 +1,10 @@
 import * as PIXI from "pixi.js";
-import {
-  AssetsManager,
-  gameItemShadow,
-  gameItemShadowUp,
-} from "../AssetsManager";
+import { AssetsManager, gameItemShadowUp } from "../AssetsManager";
 import { container as diContainer } from "tsyringe";
 import { GameItemType } from "../api/GameItemType";
 import Field from "./Field";
 import { gsap } from "gsap";
+import { CustomEase } from "gsap/CustomEase";
 import EaseFunction = gsap.EaseFunction;
 
 class GameItem {
@@ -77,7 +74,11 @@ class GameItem {
   }
 
   public fallDownTo(position: PIXI.Point, delay?: number) {
-    return this.moveTo(position, 0.5, delay, "bounce.out");
+    const ease = CustomEase.create(
+      "custom",
+      "M0,0 C0.545,0.309 0.457,1.203 1,1 ",
+    );
+    return this.moveTo(position, 0.5, delay, ease);
   }
 
   public remove() {

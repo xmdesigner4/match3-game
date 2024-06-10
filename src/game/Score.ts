@@ -54,7 +54,6 @@ class Score {
     this.score_9bg.container.y = scoreBack.y - scoreBack.height - 4;
     this.container.addChild(this.score_9bg.container);
 
-    // @ts-ignore
     this.scoreText = new PIXI.Text(this.score, {
       fontFamily: "Chango",
       fontWeight: "normal",
@@ -70,6 +69,11 @@ class Score {
     this.scoreText.x =
       this.score_9bg.container.x + this.score_9bg.container.width / 2;
   }
+
+  // public repostition() {
+  //   scoreBack.x = this.board.container.x - this.board.container.width / 2;
+  //   scoreBack.y = this.board.container.y - this.board.container.height / 2;
+  // }
 
   public add(toScore: number) {
     // TODO: make score increase gradually slowing, gsap.to(onUpdate, onStart)
