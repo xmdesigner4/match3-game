@@ -48,13 +48,12 @@ export class Application {
     // emitter.emit = true;
     // this.app.stage.addChild(particleContainer);
 
-    this.sceneManager.startScene(SceneType.START);
+    this.sceneManager.switchScene(SceneType.START);
   }
 
   private addBackground() {
     const background = new PIXI.Sprite(this.am.bgTx);
     background.anchor.set(0.5);
-    // this.container.addChild(background);
     this.app.stage.addChild(background);
 
     this.positionBackground(background);

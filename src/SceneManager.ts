@@ -11,37 +11,37 @@ export class SceneManager {
 
   constructor(public app: PIXI.Application) {}
 
-  public startScene(newScene: SceneType, win = false) {
-    let scene: Scene;
-    switch (newScene) {
+  public switchScene(toScene: SceneType, win = false) {
+    let newScene: Scene;
+    switch (toScene) {
       case SceneType.START: {
-        scene = new StartScene();
+        newScene = new StartScene();
         break;
       }
       case SceneType.GAME: {
-        scene = new GameScene();
+        newScene = new GameScene();
         break;
       }
       case SceneType.FINISH: {
-        scene = new FinishScene(win);
+        newScene = new FinishScene(win);
         break;
       }
       default:
         break;
     }
-    if (!!scene) {
+    if (!!newScene) {
       if (!!this.scene) {
         this.scene.container.destroy();
       }
-      this.scene = scene;
-      scene.container.on(Events.SCENE_CHANGE, this.onSceneChange.bind(this));
-      this.app.stage.addChild(scene.container);
+      this.scene = newScene;
+      newScene.container.on(Events.SCENE_CHANGE, this.onSceneChange.bind(this));
+      this.app.stage.addChild(newScene.container);
     }
   }
 
   private onSceneChange(payload: { scene: SceneType; win: boolean }) {
     const { scene, win } = payload;
     console.log("scene:", scene);
-    this.startScene(scene, win);
+    this.switchScene(scene, win);
   }
 }

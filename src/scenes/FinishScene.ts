@@ -7,7 +7,7 @@ import { SceneType } from "../api/SceneType";
 
 class FinishScene extends Scene {
   constructor(win?: boolean) {
-    super();
+    super(true);
     this.init(win);
   }
 
@@ -16,17 +16,14 @@ class FinishScene extends Scene {
 
     const stamp = new PIXI.Sprite(win ? am.winTx : am.failTx);
     stamp.scale.set(0.5);
-    stamp.anchor.set(0.5);
-    stamp.x = window.innerWidth / 2;
-    stamp.y = window.innerHeight / 2;
+    stamp.anchor.set(0);
     this.container.addChild(stamp);
 
     const tryAgainButton = am.getAssetSprite("try_again.png");
     tryAgainButton.scale.set(0.5);
-    tryAgainButton.anchor.set(0.5);
-    tryAgainButton.x = window.innerWidth / 2;
-    tryAgainButton.y =
-      stamp.y + stamp.height / 2 + tryAgainButton.height / 2 - 120;
+    tryAgainButton.anchor.set(0);
+    tryAgainButton.x = stamp.width / 2 - tryAgainButton.width / 2;
+    tryAgainButton.y = stamp.y + stamp.height - 100;
     tryAgainButton.eventMode = "static";
     tryAgainButton.on("pointerdown", this.onTryAgain.bind(this));
     this.container.addChild(tryAgainButton);
